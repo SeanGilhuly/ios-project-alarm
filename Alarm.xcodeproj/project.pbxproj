@@ -12,6 +12,9 @@
 		1A0FB7861CDD4F07006808D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A0FB7851CDD4F07006808D9 /* Assets.xcassets */; };
 		1A0FB7891CDD4F07006808D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A0FB7871CDD4F07006808D9 /* LaunchScreen.storyboard */; };
 		1A0FB7BF1CE19229006808D9 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0FB7BE1CE19229006808D9 /* DateHelper.swift */; };
+		8B1660631CEA604400377D4F /* AlarmListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1660621CEA604400377D4F /* AlarmListTableViewController.swift */; };
+		8B1660681CEA621400377D4F /* AlarmDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1660671CEA621400377D4F /* AlarmDetailTableViewController.swift */; };
+		8B16606A1CEA661F00377D4F /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1660691CEA661F00377D4F /* SwitchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		1A0FB7881CDD4F07006808D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A0FB78A1CDD4F07006808D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A0FB7BE1CE19229006808D9 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		8B1660621CEA604400377D4F /* AlarmListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmListTableViewController.swift; sourceTree = "<group>"; };
+		8B1660671CEA621400377D4F /* AlarmDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmDetailTableViewController.swift; sourceTree = "<group>"; };
+		8B1660691CEA661F00377D4F /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +60,41 @@
 		1A0FB77D1CDD4F07006808D9 /* Alarm */ = {
 			isa = PBXGroup;
 			children = (
-				1A0FB77E1CDD4F07006808D9 /* AppDelegate.swift */,
+				8B1660661CEA605600377D4F /* View Controllers */,
+				8B1660651CEA604E00377D4F /* Controllers */,
+				8B1660641CEA604700377D4F /* Model Object */,
 				1A0FB7821CDD4F07006808D9 /* Main.storyboard */,
-				1A0FB7BE1CE19229006808D9 /* DateHelper.swift */,
+				1A0FB77E1CDD4F07006808D9 /* AppDelegate.swift */,
 				1A0FB7851CDD4F07006808D9 /* Assets.xcassets */,
 				1A0FB7871CDD4F07006808D9 /* LaunchScreen.storyboard */,
 				1A0FB78A1CDD4F07006808D9 /* Info.plist */,
 			);
 			path = Alarm;
+			sourceTree = "<group>";
+		};
+		8B1660641CEA604700377D4F /* Model Object */ = {
+			isa = PBXGroup;
+			children = (
+				1A0FB7BE1CE19229006808D9 /* DateHelper.swift */,
+			);
+			name = "Model Object";
+			sourceTree = "<group>";
+		};
+		8B1660651CEA604E00377D4F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		8B1660661CEA605600377D4F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B1660621CEA604400377D4F /* AlarmListTableViewController.swift */,
+				8B1660671CEA621400377D4F /* AlarmDetailTableViewController.swift */,
+				8B1660691CEA661F00377D4F /* SwitchTableViewCell.swift */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +169,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A0FB77F1CDD4F07006808D9 /* AppDelegate.swift in Sources */,
+				8B1660631CEA604400377D4F /* AlarmListTableViewController.swift in Sources */,
+				8B16606A1CEA661F00377D4F /* SwitchTableViewCell.swift in Sources */,
+				8B1660681CEA621400377D4F /* AlarmDetailTableViewController.swift in Sources */,
 				1A0FB7BF1CE19229006808D9 /* DateHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
