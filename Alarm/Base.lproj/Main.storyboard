@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NVc-WK-k20">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Larm List Table View Controller-->
+        <!--Alarm List Table View Controller-->
         <scene sceneID="q2f-bq-geT">
             <objects>
-                <tableViewController id="Lsb-pH-asv" customClass="larmListTableViewController" sceneMemberID="viewController">
+                <tableViewController id="Lsb-pH-asv" customClass="AlarmListTableViewController" customModule="Alarm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="mUS-Mn-A0V">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="xUt-dQ-19u" customClass="SwitchTableViewCell" customModule="Alarm" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="alarmCell" id="xUt-dQ-19u" customClass="SwitchTableViewCell" customModule="Alarm" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xUt-dQ-19u" id="q8v-qL-abn">
@@ -57,7 +57,7 @@
                                     <outlet property="alarmSwitch" destination="Zli-rb-zqn" id="Oob-pj-o41"/>
                                     <outlet property="nameLabel" destination="gZG-yZ-qmw" id="DPZ-oT-LaQ"/>
                                     <outlet property="timeLabel" destination="YUv-Xu-EGW" id="woi-Yg-cCn"/>
-                                    <segue destination="lBe-ES-kJC" kind="show" id="im3-nZ-jiu"/>
+                                    <segue destination="lBe-ES-kJC" kind="show" identifier="toAlarmDetail" id="im3-nZ-jiu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -69,7 +69,7 @@
                     <navigationItem key="navigationItem" id="Yn9-rw-viG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="FWf-vD-27W">
                             <connections>
-                                <segue destination="lBe-ES-kJC" kind="show" id="MlW-0H-n0Y"/>
+                                <segue destination="lBe-ES-kJC" kind="show" identifier="toNewAlarm" id="MlW-0H-n0Y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -212,6 +212,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MlW-0H-n0Y"/>
+        <segue reference="im3-nZ-jiu"/>
     </inferredMetricsTieBreakers>
 </document>

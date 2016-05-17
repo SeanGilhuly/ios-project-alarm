@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class AlarmController {
     
@@ -15,7 +16,7 @@ class AlarmController {
     var alarms: [Alarm] = []
     
     init() {
-        self.alarms = []
+//        self.alarms = []
     }
     
     
@@ -41,7 +42,10 @@ class AlarmController {
         alarms.removeAtIndex(index)
     }
     
-    
+    func toggleEnabled(alarm: Alarm) {
+        alarm.enabled = !alarm.enabled
+    }
+   
     
 }
 

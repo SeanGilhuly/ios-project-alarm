@@ -15,12 +15,14 @@ class SwitchTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!
     
+    weak var delegate: SwitchTableViewCellDelegate?
+    
     
     // MARK: - IBActions
     
     
     @IBAction func switchValueChanged(sender: AnyObject) {
-    
+        delegate?.switchCellSwitchValueChanged(self)
     }
 
     
@@ -29,9 +31,8 @@ class SwitchTableViewCell: UITableViewCell {
         nameLabel.text = alarm.name
         alarmSwitch.on = alarm.enabled
     }
-    
-    
-    
-    
-    
+}
+
+protocol SwitchTableViewCellDelegate: class {
+    func switchCellSwitchValueChanged(cell: SwitchTableViewCell)
 }

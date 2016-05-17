@@ -14,8 +14,8 @@ class Alarm: Equatable {
     //NSTimeInterval is always specified in seconds
     var fireTimeFromMidnight: NSTimeInterval
     var name: String
-    let enabled: Bool
-    let uuid: String
+    var enabled: Bool
+    var uuid: String
     
     init(fireTimeFromMidnight: NSTimeInterval, name: String, enabled: Bool = true, uuid: String = NSUUID().UUIDString) {
         self.fireTimeFromMidnight = fireTimeFromMidnight
