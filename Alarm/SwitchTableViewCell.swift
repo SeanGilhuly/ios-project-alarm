@@ -20,18 +20,20 @@ class SwitchTableViewCell: UITableViewCell {
     
     // MARK: - IBActions
     
-    
+    //Check if a delegate is assigned, and if so, call the delegate protocol function
     @IBAction func switchValueChanged(sender: AnyObject) {
         delegate?.switchCellSwitchValueChanged(self)
     }
 
-    
+    // Update the labels to the time and name of the alarm
+    // Update the alarmSwitch to "on" / enabled
     func updateWithAlarm(alarm: Alarm) {
         timeLabel.text = alarm.fireTimeAsString
         nameLabel.text = alarm.name
         alarmSwitch.on = alarm.enabled
     }
 }
+
 
 protocol SwitchTableViewCellDelegate: class {
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell)

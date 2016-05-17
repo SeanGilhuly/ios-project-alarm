@@ -21,6 +21,7 @@ class Alarm: Equatable {
         self.fireTimeFromMidnight = fireTimeFromMidnight
         self.name = name
         self.enabled = enabled
+        // A UUID is a Universally Unique Identifier
         self.uuid = uuid
         
     }
@@ -29,7 +30,6 @@ class Alarm: Equatable {
         guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {
             return nil
         }
-        
         let fireDateFromThisMorning = NSDate(timeInterval: fireTimeFromMidnight, sinceDate: thisMorningAtMidnight)
         return fireDateFromThisMorning
     }

@@ -15,6 +15,7 @@ class AlarmDetailTableViewController: UITableViewController {
     @IBOutlet weak var alarmTitleTextField: UITextField!
     @IBOutlet weak var enableButton: UIButton!
     
+    //Add an alarm property of type Alarm?
     var alarm: Alarm?
     
     override func viewDidLoad() {
@@ -38,8 +39,12 @@ class AlarmDetailTableViewController: UITableViewController {
         }
     }
     
+
     func updateWithAlarm(alarm: Alarm) {
-        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {return}
+        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {
+            return
+        }
+       
         alarmDatePicker.setDate(NSDate(timeInterval: alarm.fireTimeFromMidnight, sinceDate: thisMorningAtMidnight), animated: false)
         alarmTitleTextField.text = alarm.name
         self.title = alarm.name

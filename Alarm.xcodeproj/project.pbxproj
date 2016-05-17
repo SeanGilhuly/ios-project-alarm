@@ -66,9 +66,9 @@
 			children = (
 				8B1660661CEA605600377D4F /* View Controllers */,
 				8B16606F1CEA8DB900377D4F /* View */,
-				1A0FB7821CDD4F07006808D9 /* Main.storyboard */,
 				8B1660651CEA604E00377D4F /* Controllers */,
 				8B1660641CEA604700377D4F /* Model Object */,
+				1A0FB7821CDD4F07006808D9 /* Main.storyboard */,
 				1A0FB7BE1CE19229006808D9 /* DateHelper.swift */,
 				1A0FB7871CDD4F07006808D9 /* LaunchScreen.storyboard */,
 				1A0FB77E1CDD4F07006808D9 /* AppDelegate.swift */,

@@ -29,7 +29,7 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("toAlarmDetail", forIndexPath: indexPath) as? SwitchTableViewCell ?? SwitchTableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath) as? SwitchTableViewCell ?? SwitchTableViewCell()
 
         // Configure the cell... The cell is called "alarm", now pull the cell out of the row
         let alarm = AlarmController.sharedController.alarms[indexPath.row]
@@ -44,16 +44,24 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source.  Find the cell for the row
+            
+            // Find the cell for the row that you will be deleting
+            // Set that cell to "alarm"
             let alarm = AlarmController.sharedController.alarms[indexPath.row]
+            
+            //Delete the row.  Call it on the "Delete Alarm" function
             AlarmController.sharedController.deleteAlarm(alarm)
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
     
     
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
-        guard let indexPath = tableView.indexPathForCell(cell) else {return}
+        
+        guard let indexPath = tableView.indexPathForCell(cell) else {
+            return
+        }
         let alarm = AlarmController.sharedController.alarms[indexPath.row]
         AlarmController.sharedController.toggleEnabled(alarm)
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
