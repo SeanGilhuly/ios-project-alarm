@@ -21,13 +21,6 @@ class AlarmDetailTableViewController: UITableViewController {
         
     }
     
-    // MARK: - IBActions
-    @IBAction func enableButtonTapped(sender: AnyObject) {
-        guard let alarm = alarm else {return}
-        AlarmController.sharedController.toggleEnabled(alarm)
-        setupView()
-    }
-        
     func setupView() {
         if alarm == nil {
             enableButton.hidden = true
@@ -44,13 +37,23 @@ class AlarmDetailTableViewController: UITableViewController {
             }
         }
     }
-
+    
     func updateWithAlarm(alarm: Alarm) {
-            guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {return}
-            alarmDatePicker.setDate(NSDate(timeInterval: alarm.fireTimeFromMidnight, sinceDate: thisMorningAtMidnight), animated: false)
-            alarmTitleTextField.text = alarm.name
-            self.title = alarm.name
+        guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {return}
+        alarmDatePicker.setDate(NSDate(timeInterval: alarm.fireTimeFromMidnight, sinceDate: thisMorningAtMidnight), animated: false)
+        alarmTitleTextField.text = alarm.name
+        self.title = alarm.name
     }
+    
+    // MARK: - IBActions
+    @IBAction func enableButtonTapped(sender: AnyObject) {
+        guard let alarm = alarm else {
+            return
+        }
+        setupView()
+    }
+        
+    
     
     
     
@@ -59,7 +62,16 @@ class AlarmDetailTableViewController: UITableViewController {
         guard let title = alarmTitleTextField.text,
             thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {return}
         let timeIntervalSinceMidnight = alarmDatePicker.date.timeIntervalSinceDate(thisMorningAtMidnight)
-                self.navigationController?.popViewControllerAnimated(true)
+        if let alarm = alarm {
+            AlarmController.sharedController.updateAlarm(alarm, fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
+        } else {
+            let alarm = AlarmController.sharedController.addAlarm(timeIntervalSinceMidnight, name: title)
+            self.alarm = alarm
+        
+        }
+        self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    
+    
 }
-

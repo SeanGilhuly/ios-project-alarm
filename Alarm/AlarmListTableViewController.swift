@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmListTableViewController: UITableViewController {
+class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +31,11 @@ class AlarmListTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("toAlarmDetail", forIndexPath: indexPath) as? SwitchTableViewCell ?? SwitchTableViewCell()
 
-        // Configure the cell... The cell is called "alarm"
+        // Configure the cell... The cell is called "alarm", now pull the cell out of the row
         let alarm = AlarmController.sharedController.alarms[indexPath.row]
         cell.updateWithAlarm(alarm)
+        cell.delegate = self
+
 
         return cell
     }
@@ -48,38 +50,24 @@ class AlarmListTableViewController: UITableViewController {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
-
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    
+    func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
+        guard let indexPath = tableView.indexPathForCell(cell) else {return}
+        let alarm = AlarmController.sharedController.alarms[indexPath.row]
+        AlarmController.sharedController.toggleEnabled(alarm)
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        let detailVC = segue.destinationViewController as? AlarmDetailTableViewController
         if segue.identifier == "toAlarmDetail" {
+            let alarmDetailTableViewController = segue.destinationViewController as? AlarmDetailTableViewController
             guard let indexPath = tableView.indexPathForSelectedRow else {return}
-            let alarm = AlarmController.sharedController
-                .alarms[indexPath.row]
-            detailVC?.alarm = alarm
+            let alarm = AlarmController.sharedController.alarms[indexPath.row]
+            alarmDetailTableViewController?.alarm = alarm
         }
     }
+    
 }
-  
-
-

@@ -6,7 +6,6 @@
 //  Copyright © 2016 DevMountain. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class AlarmController {
@@ -16,7 +15,7 @@ class AlarmController {
     var alarms: [Alarm] = []
     
     init() {
-//        self.alarms = []
+       self.alarms = []
     }
     
     

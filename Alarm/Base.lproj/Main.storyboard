@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NVc-WK-k20">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NVc-WK-k20">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -81,7 +81,7 @@
         <!--Alarm Detail Table View Controller-->
         <scene sceneID="94M-YJ-MEt">
             <objects>
-                <tableViewController id="lBe-ES-kJC" customClass="AlarmDetailTableViewController" sceneMemberID="viewController">
+                <tableViewController id="lBe-ES-kJC" customClass="AlarmDetailTableViewController" customModule="Alarm" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="g51-UO-faM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +183,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="alarmDatePicker" destination="Fip-7L-kJt" id="tz0-nl-s9C"/>
+                        <outlet property="alarmDatePicker" destination="Fip-7L-kJt" id="5c7-9Z-i03"/>
                         <outlet property="alarmTitleTextField" destination="pX7-7S-Fqw" id="SAS-Fa-GVc"/>
                         <outlet property="enableButton" destination="GHD-1R-QGq" id="gXH-jf-YqM"/>
                     </connections>
@@ -212,6 +212,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="im3-nZ-jiu"/>
+        <segue reference="MlW-0H-n0Y"/>
     </inferredMetricsTieBreakers>
 </document>
