@@ -6,6 +6,8 @@
 //  Copyright © 2016 DevMountain. All rights reserved.
 //
 
+// Views should only get up the view and do no computing
+
 import UIKit
 
 class SwitchTableViewCell: UITableViewCell {
@@ -15,7 +17,9 @@ class SwitchTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!
     
-    
+    // Must add this to have access to the delegate protocol
+    //"weak" deals with memory
+    //If you don't add "weak", apple automatically adds "strong" as inferred
     weak var delegate: SwitchTableViewCellDelegate?
     
     

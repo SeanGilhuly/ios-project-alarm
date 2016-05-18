@@ -10,24 +10,34 @@ import UIKit
 
 class AlarmController {
     
+    // This allows you to access the information
     static let sharedController = AlarmController()
     
+    //An alarms array property with an empty array as a default value
     var alarms: [Alarm] = []
     
+    //You have to initalize the data 
     init() {
-       self.alarms = []
-       self.alarms = mockAlarms()
+        alarms = []
+        alarms = mockAlarm
+    }
+    // Make a computed property that returns a Alarm String
+    var mockAlarm: [Alarm] {
+        let alarm1 = Alarm(fireTimeFromMidnight: 5, name: "Sean")
+        let alarm2 = Alarm(fireTimeFromMidnight: 10, name: "Nathan")
+        //Return the alarms you just created
+        return [alarm1, alarm2]
     }
     
     func addAlarm(fireTimeFromMidnight: NSTimeInterval, name: String) -> Alarm {
         // Create a new alarm from the Alarm initializer
         let alarm = Alarm(fireTimeFromMidnight: fireTimeFromMidnight, name: name)
-        // Append the new alarm the array of alarms
+        // Append (add) the new alarm the array of alarms
         alarms.append(alarm)
         // Return the new alarm
         return alarm
     }
-    
+    // Pass in the "alarm" you want to change in the parameter, along with the firetime and name
     func updateAlarm(alarm: Alarm, fireTimeFromMidnight: NSTimeInterval, name: String) {
         //Update an existing alarms time
         alarm.fireTimeFromMidnight = fireTimeFromMidnight
@@ -51,12 +61,6 @@ class AlarmController {
         alarm.enabled = !alarm.enabled
                             // means (alarm.enabled != alarm.enabled)
     }
-   
-    func mockAlarms() -> [Alarm] {
-        let alarm1 = Alarm(fireTimeFromMidnight: 30421, name: "Wake Up.  Long long long test", enabled: true)
-        return [alarm1]
-    }
-  
 }
 
 

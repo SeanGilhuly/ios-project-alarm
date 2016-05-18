@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDelegate {
+class AlarmListTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +17,7 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        //Reload the data on the page
         tableView.reloadData()
     }
 
@@ -24,12 +25,15 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
 
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //Count the number of strings in the alarm array
         return AlarmController.sharedController.alarms.count
     }
 
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath) as? SwitchTableViewCell ?? SwitchTableViewCell()
+        // as? = because you need to access the Switch
+        //"??" - nil collolensce...  if the left is wrong, go right
 
         // Configure the cell... The cell is called "alarm", now pull the cell out of the row
         let alarm = AlarmController.sharedController.alarms[indexPath.row]
@@ -56,22 +60,16 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
         }
     }
     
-    func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
-        // set a property to return a the specific cell to switch
-        guard let indexPath = tableView.indexPathForCell(cell) else { return }
-        //Find the specific "alarm" row you want
-        let alarm = AlarmController.sharedController.alarms[indexPath.row]
-        //Enable the specific alarm row you found
-        AlarmController.sharedController.toggleEnabled(alarm)
-        //Reload the data so it shows the switch as on
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    }
+    
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Check to see if they clicked on the specific cell
         if segue.identifier == "toAlarmDetail" {
+            //If so, find the destination to where they are going
             if let alarmDetailTableViewController = segue.destinationViewController as? AlarmDetailTableViewController {
+                //
                 if let alarmCell = sender as? UITableViewCell {
                     if let indexPath = tableView.indexPathForCell(alarmCell) {
                     alarmDetailTableViewController.alarm = AlarmController.sharedController.alarms[indexPath.row]
@@ -80,4 +78,20 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
             }
         }
     }
+}
+
+
+
+
+extension AlarmListTableViewController: SwitchTableViewCellDelegate {
+    func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
+    // set a property to return a the specific cell to switch
+    guard let indexPath = tableView.indexPathForCell(cell) else { return }
+    //Find the specific "alarm" row you want
+    let alarm = AlarmController.sharedController.alarms[indexPath.row]
+    //Enable the specific alarm row you found
+    AlarmController.sharedController.toggleEnabled(alarm)
+    //Reload the data so it shows the switch as on
+    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+}
 }
