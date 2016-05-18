@@ -15,6 +15,7 @@ class SwitchTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!
     
+    
     weak var delegate: SwitchTableViewCellDelegate?
     
     

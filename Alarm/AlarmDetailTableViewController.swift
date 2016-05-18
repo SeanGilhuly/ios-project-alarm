@@ -19,10 +19,17 @@ class AlarmDetailTableViewController: UITableViewController {
     var alarm: Alarm?
     
     override func viewDidLoad() {
-        
+        //unwrap self.alarm
+        if let alarm = alarm {
+        //Display an alarm
+            updateWithAlarm(alarm)
+        }
+        //Call setupView() to set up the button state
+        setupView()
     }
     
     func setupView() {
+        
         if alarm == nil {
             enableButton.hidden = true
         } else {
@@ -41,40 +48,37 @@ class AlarmDetailTableViewController: UITableViewController {
     
 
     func updateWithAlarm(alarm: Alarm) {
+        
         guard let thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {
             return
         }
-       
+        //Update the date picker
         alarmDatePicker.setDate(NSDate(timeInterval: alarm.fireTimeFromMidnight, sinceDate: thisMorningAtMidnight), animated: false)
+        //Update alarm text title field
         alarmTitleTextField.text = alarm.name
+        //Update alarm title
         self.title = alarm.name
     }
     
     // MARK: - IBActions
     @IBAction func enableButtonTapped(sender: AnyObject) {
-        guard let alarm = alarm else {
-            return
-        }
-        setupView()
-    }
         
-    
-    
-    
-    
-    
+    }
+   
     @IBAction func saveButtonTapped(sender: AnyObject) {
+        // If 
         guard let title = alarmTitleTextField.text,
             thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {return}
         let timeIntervalSinceMidnight = alarmDatePicker.date.timeIntervalSinceDate(thisMorningAtMidnight)
+        //Unwrap self.alarm
         if let alarm = alarm {
             AlarmController.sharedController.updateAlarm(alarm, fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
         } else {
             let alarm = AlarmController.sharedController.addAlarm(timeIntervalSinceMidnight, name: title)
             self.alarm = alarm
-        
         }
         self.navigationController?.popViewControllerAnimated(true)
+        
     }
     
     

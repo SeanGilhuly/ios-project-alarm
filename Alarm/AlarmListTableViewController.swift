@@ -56,14 +56,14 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
         }
     }
     
-    
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
-        
-        guard let indexPath = tableView.indexPathForCell(cell) else {
-            return
-        }
+        // set a property to return a the specific cell to switch
+        guard let indexPath = tableView.indexPathForCell(cell) else { return }
+        //Find the specific "alarm" row you want
         let alarm = AlarmController.sharedController.alarms[indexPath.row]
+        //Enable the specific alarm row you found
         AlarmController.sharedController.toggleEnabled(alarm)
+        //Reload the data so it shows the switch as on
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
     
@@ -71,11 +71,13 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toAlarmDetail" {
-            let alarmDetailTableViewController = segue.destinationViewController as? AlarmDetailTableViewController
-            guard let indexPath = tableView.indexPathForSelectedRow else {return}
-            let alarm = AlarmController.sharedController.alarms[indexPath.row]
-            alarmDetailTableViewController?.alarm = alarm
+            if let alarmDetailTableViewController = segue.destinationViewController as? AlarmDetailTableViewController {
+                if let alarmCell = sender as? UITableViewCell {
+                    if let indexPath = tableView.indexPathForCell(alarmCell) {
+                    alarmDetailTableViewController.alarm = AlarmController.sharedController.alarms[indexPath.row]
+                    }
+                }
+            }
         }
     }
-    
 }

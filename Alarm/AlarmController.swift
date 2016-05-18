@@ -44,8 +44,12 @@ class AlarmController {
         alarms.removeAtIndex(index)
     }
     
+
+    // Change the alarm's underlying enabled property
     func toggleEnabled(alarm: Alarm) {
+        //"!" = not
         alarm.enabled = !alarm.enabled
+                            // means (alarm.enabled != alarm.enabled)
     }
    
     func mockAlarms() -> [Alarm] {
