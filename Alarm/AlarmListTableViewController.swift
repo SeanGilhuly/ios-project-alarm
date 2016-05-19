@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmListTableViewController: UITableViewController {
+class AlarmListTableViewController: UITableViewController, AlarmScheduler {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +91,15 @@ extension AlarmListTableViewController: SwitchTableViewCellDelegate {
     let alarm = AlarmController.sharedController.alarms[indexPath.row]
     //Enable the specific alarm row you found
     AlarmController.sharedController.toggleEnabled(alarm)
+    // schedule a notification if the switch is being turned on
+    if alarm.enabled {
+        scheduleLocalNotification(alarm)
+    } else {
+    // Cancel the notificaiton is the switch is turned off
+        cancelLocalNotification(alarm)
+    }
+        
+        
     //Reload the data so it shows the switch as on
     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
 }

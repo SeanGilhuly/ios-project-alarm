@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Alarm: Equatable, NSCoding {
+class Alarm: NSObject, NSCoding {
     
     private let FireTimeFromMidnightKey = "fireTimeFromMidnight"
     private let NameKey = "name"
@@ -52,7 +52,7 @@ class Alarm: Equatable, NSCoding {
     }
     //NSCoder stores data, similiar to presistence data (storing information)
     // Similar to a failable initializer
-    required init?(coder aDecoder: NSCoder) {
+    @objc required init?(coder aDecoder: NSCoder) {
         
         //"aDecoder.decodeObjectForKey" -
         guard let fireTimeFromMidnight = aDecoder.decodeObjectForKey(FireTimeFromMidnightKey) as? NSTimeInterval,
@@ -67,7 +67,7 @@ class Alarm: Equatable, NSCoding {
         self.uuid = uuid
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    @objc func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(fireTimeFromMidnight, forKey: FireTimeFromMidnightKey)
         aCoder.encodeObject(name, forKey: NameKey)
         aCoder.encodeObject(enabled, forKey: EnabledKey)
