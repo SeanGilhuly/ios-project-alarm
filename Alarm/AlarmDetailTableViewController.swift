@@ -68,6 +68,7 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
         }
         AlarmController.sharedController.toggleEnabled(alarm)
         setupView()
+        
     }
    
     @IBAction func saveButtonTapped(sender: AnyObject) {

@@ -93,6 +93,7 @@ extension AlarmListTableViewController: SwitchTableViewCellDelegate {
     AlarmController.sharedController.toggleEnabled(alarm)
     // schedule a notification if the switch is being turned on
     if alarm.enabled {
+    // If the alarm is enabled, schedule the notifications
         scheduleLocalNotification(alarm)
     } else {
     // Cancel the notificaiton is the switch is turned off
