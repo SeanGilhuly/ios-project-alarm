@@ -17,7 +17,7 @@ class AlarmDetailTableViewController: UITableViewController {
     @IBOutlet weak var button: UIButton!
     
     var alarm: Alarm?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let alarm = alarm {
@@ -25,7 +25,7 @@ class AlarmDetailTableViewController: UITableViewController {
         }
         setupView()
     }
-
+    
     
     func setupView() {
         if alarm == nil {
@@ -33,7 +33,7 @@ class AlarmDetailTableViewController: UITableViewController {
         } else {
             button.hidden = false
             if alarm?.enabled == true {
-                button.setTitle("Disable", forState: .Normal)
+                button.setTitle("Disabled", forState: .Normal)
                 button.setTitleColor(.whiteColor(), forState: .Normal)
                 button.backgroundColor = .redColor()
             } else {
@@ -43,7 +43,7 @@ class AlarmDetailTableViewController: UITableViewController {
             }
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -54,14 +54,21 @@ class AlarmDetailTableViewController: UITableViewController {
     @IBAction func enableButtonTapped(sender: AnyObject) {
         
     }
-
+    
     
     @IBAction func saveButtonTapped(sender: AnyObject) {
         guard let title = textField.text,
             thisMorningAtMidnight = DateHelper.thisMorningAtMidnight else {return}
         let timeIntervalSinceMidnight = datePicker.date.timeIntervalSinceDate(thisMorningAtMidnight)
+        if let alarm = alarm {
+            AlarmController.sharedController.updateAlarm(alarm, fireTimeFromMidnight: timeIntervalSinceMidnight, name: title)
+            } else {
+            let alarm = AlarmController.sharedController.addAlarm(timeIntervalSinceMidnight, name: title)
+            self.alarm = alarm
+        }
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
     
     // MARK: Functions
     
