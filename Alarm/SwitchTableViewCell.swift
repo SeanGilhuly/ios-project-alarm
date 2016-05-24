@@ -16,7 +16,9 @@ class SwitchTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var alarmSwitch: UISwitch!
     
-    weak var delegate: ButtonTableViewCellDelegate?
+    var alarm: Alarm?
+    
+    weak var delegate: SwitchTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,20 +34,22 @@ class SwitchTableViewCell: UITableViewCell {
     // MARK: - IBActions
     
     @IBAction func switchValueChanged(sender: AnyObject) {
-        
+        // check if a delegate is assigned, and if so, call the delegate protocol function
+        delegate?.switchCellSwitchValueChanged(self)
     }
     
     
     // MARK: - Functions
     
     func updateWithAlarm(alarm: Alarm) {
+        self.alarm = alarm
         timeLabel.text = alarm.fireTimeAsString
         nameLabel.text = alarm.name
         alarmSwitch.on = alarm.enabled
     }
 }
 
-protocol SwitchTableViewCellDelegate {
+protocol SwitchTableViewCellDelegate: class {
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell)
 }
 

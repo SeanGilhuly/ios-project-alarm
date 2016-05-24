@@ -35,6 +35,10 @@ class AlarmController {
         alarms.removeAtIndex(index)
     }
     
+    func toggleEnabled(alarm: Alarm) {
+        alarm.enabled = !alarm.enabled
+    }
+    
     // MARK: - Mock data
     
     var mockAlarms:[Alarm] {
