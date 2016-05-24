@@ -8,22 +8,24 @@
 
 import UIKit
 
-class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDelegate {
+class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDelegate, AlarmScheduler {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
     }
 
     func switchCellSwitchValueChanged(cell: SwitchTableViewCell) {
         guard let alarm = cell.alarm, indexPath = tableView.indexPathForCell(cell) else { return }
         AlarmController.sharedController.toggleEnabled(alarm)
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        
+        if alarm.enabled {
+            scheduleLocalNotification(alarm)
+        } else {
+            cancelLocalNotification(alarm)
+        }
     }
     
     
@@ -31,7 +33,6 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
 
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return AlarmController.sharedController.alarms.count
     }
 
@@ -39,7 +40,6 @@ class AlarmListTableViewController: UITableViewController, SwitchTableViewCellDe
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("alarmCell", forIndexPath: indexPath) as? SwitchTableViewCell
 
-        // Configure the cell...
         let index = AlarmController.sharedController.alarms[indexPath.row]
         cell?.updateWithAlarm(index)
 

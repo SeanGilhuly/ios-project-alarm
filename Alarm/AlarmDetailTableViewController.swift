@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlarmDetailTableViewController: UITableViewController {
+class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
     
     // MARK: - IBOutlets
     
@@ -44,15 +44,16 @@ class AlarmDetailTableViewController: UITableViewController {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - IBActions
     
     @IBAction func enableButtonTapped(sender: AnyObject) {
-        
+        guard let alarm = alarm else { return }
+        AlarmController.sharedController.toggleEnabled(alarm)
+        if alarm.enabled {
+            scheduleLocalNotification(alarm)
+        } else {
+            cancelLocalNotification(alarm)
+        }
     }
     
     

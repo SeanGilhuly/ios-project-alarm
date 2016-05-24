@@ -84,29 +84,21 @@ protocol AlarmScheduler {
 extension AlarmScheduler {
     func scheduleLocalNotification(alarm: Alarm) {
         let localNotification = UILocalNotification()
-        UILocalNotification.
+        localNotification.alertTitle = "Hello"
+        localNotification.alertBody = "How are you doing today?"
+        localNotification.fireDate = alarm.fireDate
+        localNotification.category = alarm.uuid
+        
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+        
     }
     
     func cancelLocalNotification(alarm: Alarm) {
-        
+        guard let allNotifications = UIApplication.sharedApplication().scheduledLocalNotifications else { return }
+        for notification in allNotifications {
+            if notification.category == alarm.uuid {
+                UIApplication.sharedApplication().cancelLocalNotification(notification)
+            }
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
