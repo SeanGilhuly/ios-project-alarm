@@ -41,6 +41,7 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
                 button.setTitleColor(.blueColor(), forState: .Normal)
                 button.backgroundColor = .grayColor()
             }
+            
         }
     }
     
@@ -54,6 +55,7 @@ class AlarmDetailTableViewController: UITableViewController, AlarmScheduler {
         } else {
             cancelLocalNotification(alarm)
         }
+        setupView()
     }
     
     
